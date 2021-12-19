@@ -1,9 +1,7 @@
 var express = require('express');
 var app = express();
 var headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'origin, x-requested-with, content-type',
-    'Access-Control-Allow-Methods': 'PUT, GET, POST, DELETE, OPTIONS'
+    'Access-Control-Allow-Origin': 'https://amegol.github.io/',
 };
 app.listen(process.env.PORT || 5000, function(){
     console.log('listening on port 5000');
