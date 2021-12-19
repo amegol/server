@@ -7,7 +7,7 @@ app.listen(process.env.PORT || 5000, function(){
 });
 var users = [];
 app.get('/newUser', function(req, res){
-    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Origin', 'origin');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -32,7 +32,7 @@ app.get('/newUser', function(req, res){
     }
 });
 app.get('/addUser', function(req, res){
-    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Origin', 'origin');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -53,7 +53,7 @@ app.get('/addUser', function(req, res){
     }
 });
 app.get('/getUsers', function(req, res){
-    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Origin', 'origin');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -61,7 +61,7 @@ app.get('/getUsers', function(req, res){
     res.json(users);
 });
 app.get('/deleteUsers', function(req, res){
-    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Origin', 'origin');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -97,7 +97,7 @@ app.get('/', function(req, res){
         'author': 'Ezrabro',
     };
     //header
-    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Origin', 'origin');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
