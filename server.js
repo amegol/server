@@ -1,3 +1,5 @@
+//Access-Control-Allow-Origin: https://amegol.herokuapp.com
+// Access-Control-Allow-Credentials: true
 var express = require('express');
 var app = express();
 app.listen(process.env.PORT || 5000, function(){
@@ -5,6 +7,10 @@ app.listen(process.env.PORT || 5000, function(){
 });
 var users = [];
 app.get('/newUser', function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     var prename = req.query.prename;
     var lastname = req.query.lastname;
     //check if prename is empty
@@ -26,6 +32,10 @@ app.get('/newUser', function(req, res){
     }
 });
 app.get('/addUser', function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     var prename = req.query.prename;
     //check if prename is empty
     if(prename == ''){
@@ -43,10 +53,18 @@ app.get('/addUser', function(req, res){
     }
 });
 app.get('/getUsers', function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     //send in json format
     res.json(users);
 });
 app.get('/deleteUsers', function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     //delete prenmae and lastname from users
     var prename = req.query.prename;
     var lastname = req.query.lastname;
@@ -78,5 +96,10 @@ app.get('/', function(req, res){
         'description': 'This is a server for the Amegol',
         'author': 'Ezrabro',
     };
+    //header
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.herokuapp.com/*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     res.json(data);
 });
