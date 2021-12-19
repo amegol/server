@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/amegol/server/issues"
   },
-  "homepage": "https://github.com/amegol/server#readme"
+  "homepage": "https://github.com/amegol/server#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }

@@ -1,13 +1,7 @@
 var express = require('express');
 var app = express();
-var localtunnel = require('localtunnel');
 app.listen(3000, function(){
     console.log('listening on port 3000');
-    var tunnel = localtunnel({
-             port: 3000,
-           subdomain: 'amegol'
-        });
-    console.log(tunnel.url);
 });
 var users = [];
 app.get('/newUser', function(req, res){
@@ -51,4 +45,38 @@ app.get('/addUser', function(req, res){
 app.get('/getUsers', function(req, res){
     //send in json format
     res.json(users);
+});
+app.get('/deleteUsers', function(req, res){
+    //delete prenmae and lastname from users
+    var prename = req.query.prename;
+    var lastname = req.query.lastname;
+    if(prename == '' || lastname == '' || prename == undefined || lastname == undefined || prename == null || lastname == null){
+        res.json('Please enter a name');
+    }
+    else{
+        if(users.indexOf(prename) == -1 || users.indexOf(lastname) == -1){
+            res.json('User does not exist');
+        }
+        else{
+            users.splice(users.indexOf(prename), 1);
+            users.splice(users.indexOf(lastname), 1);
+            res.json('Users deleted');
+        }
+    }
+});
+app.get('/', function(req, res){
+    var data = {
+        'status': 'OK',
+        'name': 'Amegol Server',
+        'version': '1.0.0',
+        'commands': [
+            '/newUser',
+            '/addUser',
+            '/getUsers',
+            '/deleteUsers'
+        ],
+        'description': 'This is a server for the Amegol',
+        'author': 'Ezrabro',
+    };
+    res.json(data);
 });
