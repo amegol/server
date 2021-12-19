@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
-app.listen(3000, function(){
-    console.log('listening on port 3000');
+const port = Process.env.PORT || 3000 ;
+app.listen(port, function(){
+    console.log('listening on port ' + port);
 });
 var users = [];
 app.get('/newUser', function(req, res){
