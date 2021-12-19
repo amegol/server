@@ -5,7 +5,7 @@ app.listen(process.env.PORT || 5000, function(){
 });
 var users = [];
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "https://amegol.github.io");
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -13,7 +13,6 @@ app.use(function(req, res, next) {
     next();
 });
 app.get('/newUser', function(req, res){
-     
     var prename = req.query.prename;
     var lastname = req.query.lastname;
     //check if prename is empty
@@ -35,7 +34,6 @@ app.get('/newUser', function(req, res){
     }
 });
 app.get('/addUser', function(req, res){
-     
     var prename = req.query.prename;
     //check if prename is empty
     if(prename == ''){
@@ -48,33 +46,49 @@ app.get('/addUser', function(req, res){
             res.json('User added');
         }
         else{
-            res.json('User already exists');
+            var json = {
+                'error': 'User already exists'
+            };
+            res.json(json);
         }
     }
 });
 app.get('/getUsers', function(req, res){
-     
-    //send in json format
+    var json = {
+        'status': 'ok',
+        'users': users
+    };
     res.json(users);
 });
-app.get('/deleteUsers', function(req, res){
-     
-    //delete prenmae and lastname from users
+app.get('/deleteUser', function(req, res){
     var prename = req.query.prename;
-    var lastname = req.query.lastname;
-    if(prename == '' || lastname == '' || prename == undefined || lastname == undefined || prename == null || lastname == null){
-        res.json('Please enter a name');
+    if(prename == '' || prename == undefined || prename == null){
+        var json = {
+            'error': 'Please enter a name'
+        };
+        res.json(json);
     }
     else{
-        if(users.indexOf(prename) == -1 || users.indexOf(lastname) == -1){
-            res.json('User does not exist');
+        if(users.indexOf(prename) == -1){
+            var json = {
+                'status': 'OK',
+                'message': 'User does not exist'
+            };
+            res.json(json);
         }
         else{
             users.splice(users.indexOf(prename), 1);
-            users.splice(users.indexOf(lastname), 1);
-            res.json('Users deleted');
+            var json = {
+                'status': 'OK',
+                'message': 'User deleted'
+            };
+            res.json(json);
         }
     }
+});
+app.get('/deleteAllUsers', function(req, res){
+    users = [];
+    res.json('Users deleted');
 });
 app.get('/', function(req, res){
     var data = {
@@ -85,11 +99,10 @@ app.get('/', function(req, res){
             '/newUser',
             '/addUser',
             '/getUsers',
-            '/deleteUsers'
+            '/deleteUser'
         ],
         'description': 'This is a server for the Amegol',
         'author': 'Ezrabro',
     };
-     
     res.json(data);
 });
