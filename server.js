@@ -1,14 +1,11 @@
 var express = require('express');
 var app = express();
-var headers = {
-    'Access-Control-Allow-Origin': 'https://amegol.github.io/',
-};
 app.listen(process.env.PORT || 5000, function(){
     console.log('listening on port 5000');
 });
 var users = [];
 app.get('/newUser', function(req, res){
-    res.setHeader(headers);
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.github.io/');
     var prename = req.query.prename;
     var lastname = req.query.lastname;
     //check if prename is empty
@@ -30,7 +27,7 @@ app.get('/newUser', function(req, res){
     }
 });
 app.get('/addUser', function(req, res){
-    res.setHeader(headers);
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.github.io/');
     var prename = req.query.prename;
     //check if prename is empty
     if(prename == ''){
@@ -48,12 +45,12 @@ app.get('/addUser', function(req, res){
     }
 });
 app.get('/getUsers', function(req, res){
-    res.setHeader(headers);
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.github.io/');
     //send in json format
     res.json(users);
 });
 app.get('/deleteUsers', function(req, res){
-    res.setHeader(headers);
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.github.io/');
     //delete prenmae and lastname from users
     var prename = req.query.prename;
     var lastname = req.query.lastname;
@@ -85,6 +82,6 @@ app.get('/', function(req, res){
         'description': 'This is a server for the Amegol',
         'author': 'Ezrabro',
     };
-    res.setHeader(headers);
+    res.setHeader('Access-Control-Allow-Origin', 'https://amegol.github.io/');
     res.json(data);
 });
