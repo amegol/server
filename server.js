@@ -20,7 +20,7 @@ app.get('/newUser', function(req, res){
         res.json('Please enter a name');
     }
     else{
-        if(users.length == 0){
+        if(users.length == 0 || users.length == 1){
             res.json('no user');
         }
         else{
