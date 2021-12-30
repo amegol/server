@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/amegol/server#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "localtunnel": "^2.0.2"
   }
 }
