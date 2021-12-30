@@ -2,6 +2,22 @@ var express = require('express');
 var app = express();
 app.listen(process.env.PORT || 5000, function(){
     console.log('listening on port 5000');
+    const localtunnel = require('localtunnel');
+
+    (async () => {
+        const tunnel = await localtunnel({
+            port: 5000,
+            subdomain: 'amegol'
+        });
+
+        // the assigned public url for your tunnel
+        // i.e. https://abcdefgjhij.localtunnel.me
+        console.log(tunnel.url);
+
+        tunnel.on('close', () => {
+            // tunnels are closed
+        });
+    })();
 });
 var users = [];
 app.use(function(req, res, next) {
