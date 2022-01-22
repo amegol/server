@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var fs = require('fs');
 app.listen(process.env.PORT || 5000, function(){
     console.log('listening on port 5000');
     const localtunnel = require('localtunnel');
@@ -140,4 +141,12 @@ app.get('/getUsers', function(req, res){
         'users': users
     };
     res.json(json);
+});
+//on node js error log to file
+process.on('uncaughtException', function (err) {
+    var date = new Date();
+    console.log(date.toLocaleString() + ': ' + err);
+    fs.appendFile('error.log', date.toLocaleString() + ': ' + err + '\n', function (err) {
+        if (err) throw err;
+    });
 });
